@@ -1,14 +1,28 @@
 #include <Wire.h>
+#include <Servo.h>
 #define slaveAddress 0x08
+#define LED1 13
+#define LED2 12
+#define LED3 11
+#define LED4 10
+
+Servo myservo;
+
+int i = 0;
 byte dataArray[8];
 String payload[(sizeof(dataArray)/sizeof(dataArray[0]))/2];
+
 void setup() {
   Serial.begin(9600);
-  // Start the I2C Bus as Slave on address 9
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(LED4, OUTPUT);
+  myservo.attach(9);
   Wire.begin(slaveAddress); 
-  // Attach a function to trigger when something is received.
   Wire.onReceive(receiveEvent);
 }
+
 void receiveEvent(int bytes) {
   for(int i=0; i < bytes; i++)
   {
@@ -19,9 +33,79 @@ void receiveEvent(int bytes) {
     payload[i] = String(char(dataArray[2*i])) + String(char(dataArray[2*i+1]));
   }
 }
+
+void open()
+{
+  myservo.write(0);
+  i = 1;
+}
+
+void close()
+{
+  myservo.write(180);
+  i = 0;
+}
+
 void loop() {
-  for(int i = 0; i < (sizeof(payload)/sizeof(payload[0])); i++)
+  if(i == 0)
   {
-    Serial.println(payload[i]);
+    if(payload[0] == "B1" && payload[2] == "T0")
+    {
+      digitalWrite(LED1, HIGH);
+      myservo.write(0);
+      i = 1;
+      delay(5000);
+    }
+    if(payload[0] == "B1" && payload[2] == "T1")
+    {
+      digitalWrite(LED1, HIGH);
+      myservo.write(0);
+      i = 1;
+      delay(2500);
+    }
+    if(payload[3] == "W1")
+    {
+      myservo.write(0);
+      i = 1;
+      delay(5000);
+    }
+  }
+  else if(i == 1)
+  {
+    if(payload[0] == "B1" && payload[2] == "T0")
+    {
+      digitalWrite(LED2, HIGH);
+      myservo.write(180);
+      i = 0;
+      delay(5000);
+    }
+    if(payload[0] == "B1" && payload[2] == "T1")
+    {
+      digitalWrite(LED2, HIGH);
+      myservo.write(180);
+      i = 0;
+      delay(2500);
+    }
+    if(payload[3] == "W1")
+    {
+      digitalWrite(LED4, HIGH);
+      delay(100);
+      digitalWrite(LED4, LOW);
+      delay(100);
+    }
+  }
+  if (payload[0] == "L1")
+  {
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    myservo.write(92);
+  }
+  if(payload[2] == "T0")
+  {
+    digitalWrite(LED3, LOW);
+  }
+  if (payload[2] == "T1")
+  {
+    digitalWrite(LED3, HIGH);
   }
 }
