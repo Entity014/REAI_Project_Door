@@ -5,7 +5,7 @@
 #define tricPin 11
 #define echoPin 10
 #define analogPin 0
-byte dataArray[8];
+byte dataArray[8]; // [B1, B2, T0, W0]
 
 int light = 0;
 long duration, distance;
