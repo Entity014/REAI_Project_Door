@@ -83,7 +83,7 @@ def detectH():
     hands = mpHands.Hands()
     mpDraw = mp.solutions.drawing_utils
     
-    data2JSON = [{"Qr": "", "Hands": "", "Face": "0"}]
+    data2JSON = [{"Qr": "", "Hands": "", "Face": "face0"}]
     while cap.isOpened():
         finger = []
         check, frame = cap.read()
