@@ -17,8 +17,8 @@ long timeIntervalServoD = 5000;
 long timeIntervalServoN = 2500;
 long timeIntervalBuzzer = 1000;
 int ledState = 0, servoState = 90, stateDoor = 0, stateB = 0, buzzerState = 0;
-byte dataArray[10];
-String payload[(sizeof(dataArray)/sizeof(dataArray[0]))/2]; // [B1, B2, T0, W0, M0]
+byte dataArray[14];
+String payload[(sizeof(dataArray)/sizeof(dataArray[0]))/2]; // [B1, B2, T0, W0, P0, E0, M0]
 
 void receiveEvent(int bytes) {
   for(int i=0; i < bytes; i++)
@@ -44,7 +44,7 @@ void setup()
 void loop()
 {
   unsigned long currentTime = millis() + 5000;
-  if (payload[0] == "B1" && payload[1] != "B2" && payload[2] == "T0")
+  if ((payload[0] == "B1" || payload[4] == "P1") && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T0")
   {
     if (stateDoor == 0)
     {
@@ -81,7 +81,7 @@ void loop()
       }
     }
   }
-  if (payload[0] == "B1" && payload[1] != "B2" && payload[2] == "T1")
+  if ((payload[0] == "B1" || payload[4] == "P1") && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
   {
     if (stateDoor == 0)
     {
@@ -118,7 +118,7 @@ void loop()
       }
     }
   }
-  if ((payload[4] == "M0" || payload[4] == "M1") && payload[1] != "B2" && payload[2] == "T0")
+  if ((payload[6] == "M0" || payload[6] == "M1") && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T0")
   {
     if (stateDoor == 0)
     {
@@ -155,7 +155,7 @@ void loop()
       }
     }
   }
-  if (payload[4] == "M0" && payload[1] != "B2" && payload[2] == "T1")
+  if (payload[6] == "M0" && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
   {
     if (stateDoor == 0)
     {
@@ -192,7 +192,7 @@ void loop()
       }
     }
   }
-  if (payload[4] == "M1" && payload[1] != "B2" && payload[2] == "T1")
+  if (payload[6] == "M1" && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
   {
     if (stateDoor == 0)
     {
@@ -229,7 +229,7 @@ void loop()
       }
     }
   }
-  if (payload[3] == "W1" && payload[1] != "B2")
+  if (payload[3] == "W1" && (payload[1] != "B2" || payload[5] != "E1"))
   {
     WaterFlood(currentTime);
   }
@@ -237,7 +237,7 @@ void loop()
   {
     digitalWrite(ledPin2, HIGH);
   }
-  if (payload[1] == "B2")
+  if (payload[1] == "B2" || payload[5] == "E1")
   {
     myservo.write(90);
     digitalWrite(ledPin1, LOW);
