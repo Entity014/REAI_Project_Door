@@ -73,4 +73,5 @@ void loop()
   }
   digitalWrite(ledPin1, LOW);
   digitalWrite(ledPin2, LOW);
+  delay(300);
 }
