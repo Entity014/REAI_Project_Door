@@ -26,6 +26,7 @@ void Button()
     dataArray[2] = 0x4C;
     dataArray[3] = 0x32;
   }
+  delay(300);
 }
 
 void LDR()
