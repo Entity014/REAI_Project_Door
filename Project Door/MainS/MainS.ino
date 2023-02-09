@@ -44,27 +44,23 @@ void setup()
 void loop()
 {
   unsigned long currentTime = millis() + 5000;
-  if ((payload[0] == "B1" || payload[4] == "P1" || payload[6] == "M0" || payload[6] == "M1") && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T0")
+  if ((payload[0] == "B1" || payload[4] == "P1" || payload[6] == "M1" || payload[6] == "M2") && (payload[1] != "B2" && payload[5] != "E1") && payload[2] == "T0")
   {
     door(currentTime, timeIntervalServoD);
   }
-  if ((payload[0] == "B1" || payload[4] == "P1") && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
+  if ((payload[0] == "B1" || payload[4] == "P1" || payload[6] == "M2") && (payload[1] != "B2" && payload[5] != "E1") && payload[2] == "T1")
   {
     door(currentTime, timeIntervalServoN);
   }
-  if (payload[6] == "M0" && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
+  if (payload[6] == "M1" && (payload[1] != "B2" && payload[5] != "E1") && payload[2] == "T1")
   {
     door(currentTime, timeIntervalServoD);
   }
-  if (payload[6] == "M1" && (payload[1] != "B2" || payload[5] != "E1") && payload[2] == "T1")
-  {
-    door(currentTime, timeIntervalServoN);
-  }
-  if (payload[3] == "W1" && (payload[1] != "B2" || payload[5] != "E1"))
+  if (payload[3] == "W1" && (payload[1] != "B2" && payload[5] != "E1"))
   {
     WaterFlood(currentTime);
   }
-  if (payload[2] == "T1" && (payload[1] != "B2" || payload[5] != "E1"))
+  if (payload[2] == "T1" && (payload[1] != "B2" && payload[5] != "E1"))
   {
     digitalWrite(ledPin2, HIGH);
   }
