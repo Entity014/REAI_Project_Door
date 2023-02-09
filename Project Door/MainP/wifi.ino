@@ -55,12 +55,17 @@ void callback(char* topic, byte* payload, unsigned int length) {
   if (stat == "MasterOpen")
   {
     dataArray[12] = 0x4D;
-    dataArray[13] = 0x30;
+    dataArray[13] = 0x31;
   }
   if (stat == "SlaveOpen")
   {
     dataArray[12] = 0x4D;
-    dataArray[13] = 0x31;
+    dataArray[13] = 0x32;
+  }
+  if (stat == "Nothing")
+  {
+    dataArray[12] = 0x4D;
+    dataArray[13] = 0x30;
   }
 }
 
