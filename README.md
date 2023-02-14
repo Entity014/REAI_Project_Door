@@ -1,8 +1,8 @@
 # REAI_Project_Door
 <h2>Model Ai</h2>
 <ul>
-    link : <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
-" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+    link : <a href="https://drive.google.com/file/d/1fdTDIiVtQdvnMUq1tuCjKqjwSFWK402i/view?usp=sharing" target="_blank">
+    <img src="ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 </ul>
 <h2>Feature :</h2>
