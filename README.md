@@ -3,7 +3,7 @@
 <ul>
     link : 
 </ul>
-[I'm an inline-style link](https://www.google.com)
+[arbitrary case-insensitive reference text]: https://www.mozilla.org
 <h2>Feature :</h2>
 <ul>
     <li>Can create circuit diagram from Netlist.</li>
