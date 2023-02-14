@@ -13,3 +13,6 @@
     <li>🌱 I’m currently learning Robotics Engineering and Artificial Intelligence.</li>
     <li>📫 How to reach me narwit_i@cmu.ac.th</li>
 </ul>
+
+[You can use numbers for reference-style link definitions][1]
+[1]: http://slashdot.org
