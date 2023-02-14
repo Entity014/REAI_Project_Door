@@ -1,8 +1,7 @@
 # REAI_Project_Door
 <h2>Model Ai</h2>
 <ul>
-    link : <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
-" target="_blank"><alt="TEXT" width="240" height="180" border="10" /></a>
+    link : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
 </ul>
 <h2>Feature :</h2>
 <ul>
