@@ -1,7 +1,7 @@
 # REAI_Project_Door
 <h2>Model Ai</h2>
 <ul>
-    link : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+    link : <a href="https://drive.google.com/file/d/1fdTDIiVtQdvnMUq1tuCjKqjwSFWK402i/view?usp=sharing">Ai file</a>
 </ul>
 <h2>Feature :</h2>
 <ul>
@@ -13,6 +13,3 @@
     <li>🌱 I’m currently learning Robotics Engineering and Artificial Intelligence.</li>
     <li>📫 How to reach me narwit_i@cmu.ac.th</li>
 </ul>
-
-[You can use numbers for reference-style link definitions][1]
-[1]: http://slashdot.org
