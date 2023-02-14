@@ -1,7 +1,7 @@
 # REAI_Project_Door
 <h2>Model Ai</h2>
 <ul>
-    link : <a href="https://drive.google.com/file/d/1fdTDIiVtQdvnMUq1tuCjKqjwSFWK402i/view?usp=sharing" target="_blank">alt="Ai file" width="240" height="180" border="10" /></a>
+    link : [I'm an inline-style link](https://www.google.com)
 </ul>
 <h2>Feature :</h2>
 <ul>
