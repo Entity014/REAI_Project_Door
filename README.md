@@ -1,8 +1,9 @@
 # REAI_Project_Door
 <h2>Model Ai</h2>
 <ul>
-    link : [I'm an inline-style link](https://www.google.com)
+    link : 
 </ul>
+[I'm an inline-style link](https://www.google.com)
 <h2>Feature :</h2>
 <ul>
     <li>Can create circuit diagram from Netlist.</li>
