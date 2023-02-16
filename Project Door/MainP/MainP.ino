@@ -5,10 +5,10 @@
 #include "config.h"
 
 #define slaveAddress 0x08
-#define buttonPin1 12
-#define buttonPin2 13
-#define tricPin 14
-#define echoPin 27
+#define buttonPin1 14
+#define buttonPin2 12
+#define tricPin 17
+#define echoPin 16
 #define analogPin 0
 
 // sudo docker exec -it mynodered sh
