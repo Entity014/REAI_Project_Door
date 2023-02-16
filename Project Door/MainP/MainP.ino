@@ -11,6 +11,7 @@
 #define echoPin 27
 #define analogPin 0
 
+// sudo docker exec -it mynodered sh
 // WIFI
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWD;
