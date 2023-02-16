@@ -97,9 +97,10 @@ def detect(source, weights, device, img_size, iou_thres, conf_thres):
                     if (float(conf) > 0.7):
                         label = f'{names[int(cls)]} {conf:.2f}'
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=1)
-                        client = mqtt.Client()
-                        client.connect(host)
-                        client.publish("reai/pc/test", label)
+                        if (conf > 0.5):
+                            client = mqtt.Client()
+                            client.connect(host)
+                            client.publish("reai/pc/part2", names[int(cls)])
                         print(label)
 
             # Print time (inference + NMS)
