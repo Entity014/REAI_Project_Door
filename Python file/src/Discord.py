@@ -14,11 +14,11 @@ async def test(ctx):
 @bot.command()
 @commands.has_role("Master")
 async def QrM(ctx):
-    await ctx.message.author.send('You are master.', file=discord.File('D:\Programming\Python\AI\REAI-Pro\image\Master.png'))
+    await ctx.message.author.send('You are master.', file=discord.File('REAI-Pro\image\Master.png'))
 
 @bot.command()
 @commands.has_role("Slave")
 async def QrS(ctx):
-    await ctx.message.author.send('You are slave.', file=discord.File('D:\Programming\Python\AI\REAI-Pro\image\Slave.png'))
+    await ctx.message.author.send('You are slave.', file=discord.File('REAI-Pro\image\Slave.png'))
 
 bot.run('NTQ0ODM0ODc1MzE2ODk1NzQ1.GEWjtT.PdJBErIKWKPoN-BPD0ltMZjePmtrpwL2SwvPVs')
