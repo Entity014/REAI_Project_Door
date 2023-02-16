@@ -115,7 +115,7 @@ def detectH():
             data2JSON = [{"Qr": "", "Hands": ""}]
             client = mqtt.Client()
             client.connect(host)
-            client.publish("reai/pc", jsonNode)
+            client.publish("reai/pc/part1", jsonNode)
             print(jsonNode)
         cv2.putText(frame, "Finger : ", (10, 70),
                     cv2.FONT_HERSHEY_PLAIN, 1, (218, 224, 159), 2)
