@@ -1,17 +1,18 @@
 import qrcode
 
-# dataM = "Master"
-dataS = "Slave"
+dataM = "Master"
+# dataS = "Slave"
 
 qr = qrcode.QRCode(
         version=1,
-        box_size=10,
-        border=2)
-qr.add_data(dataS)
+        box_size=15,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        border=1)
+qr.add_data(dataM)
 qr.make(fit=True)
 img = qr.make_image(fill='black', back_color='white')
 
 # imgM = qrcode.make(dataM)
-# imgS = qrcode.make(dataS)
-# img.save('Master.png')
-img.save('Slave.png')
+# img = qrcode.make(dataS)
+img.save('REAI-Pro/image/Master.png')
+# img.save('REAI-Pro/image/Slave.png')
