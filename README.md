@@ -5,7 +5,7 @@
 </ul>
 <h2>Feature :</h2>
 <ul>
-    <li>Can create circuit diagram from Netlist.</li>
+    <li>Door.</li>
 </ul>
 <h2>👏 Introduction 👏</h2>
 <ul>
