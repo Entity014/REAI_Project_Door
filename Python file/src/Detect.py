@@ -38,19 +38,26 @@ def passCheck(finger, dummyC, dummyL, passA):
     #         handR.append(j)
     dummyC.append(len(finger))
     for i in range(len(passA)):
-        if (([0, 0, 0] == dummyL[i]).all() and passA[i][0] in dummyC):
-            dummyL[i] = [1, 0, 0]
+        if (([0, 0, 0, 0, 0] == dummyL[i]).all() and passA[i][0] in dummyC):
+            dummyL[i] = [1, 0, 0, 0, 0]
             dummyC.clear()
-        elif (([1, 0, 0] == dummyL[i]).all() and passA[i][1] in dummyC):
-            dummyL[i] = [1, 1, 0]
+        elif (([1, 0, 0, 0, 0] == dummyL[i]).all() and passA[i][1] in dummyC):
+            dummyL[i] = [1, 1, 0, 0, 0]
             dummyC.clear()
-        elif (([1, 1, 0] == dummyL[i]).all() and passA[i][2] in dummyC):
-            dummyL[i] = [1, 1, 1]
+        elif (([1, 1, 0, 0, 0] == dummyL[i]).all() and passA[i][2] in dummyC):
+            dummyL[i] = [1, 1, 1, 0, 0]
             dummyC.clear()
-        if (([1, 1, 1] == dummyL[i]).all()) == True:
+        elif (([1, 1, 1, 0, 0] == dummyL[i]).all() and passA[i][3] in dummyC):
+            dummyL[i] = [1, 1, 1, 1, 0]
+            dummyC.clear()
+        elif (([1, 1, 1, 1, 0] == dummyL[i]).all() and passA[i][4] in dummyC):
+            dummyL[i] = [1, 1, 1, 1, 1]
+            dummyC.clear()
+        if (([1, 1, 1, 1, 1] == dummyL[i]).all()) == True:
             for j in range(len(dummyL)):
-                dummyL[j] = [0, 0, 0]
+                dummyL[j] = [0, 0, 0, 0, 0]
             return "pass" + str(i)
+        print(dummyL)
 
 def handCheck(direct, finger, side: str):
     for i in range(4, 21, 4):
@@ -75,7 +82,7 @@ def detectH():
     cap = cv2.VideoCapture(0)
 
     arr = np.zeros((21, 2))
-    passArray = [[3,2,1], [4,5,6]] # ? master, slave
+    passArray = [[1,2,1,2,3], [5,4,3,4,5]] # ? master, slave
     dummyCheck = []
     Cpass = ""
     dummyLen = np.zeros((len(passArray), len(passArray[0])))
