@@ -57,7 +57,7 @@ void Ping()
   distance = (duration/2) / 29.1;
   // Serial.print(", Distance : ");
   // Serial.println(distance);
-  if (distance < 12)
+  if (distance <= 3)
   {
     dataArray[6] = 0x57;
     dataArray[7] = 0x31;
