@@ -14,7 +14,7 @@ unsigned long previousTServo = millis();
 unsigned long previousTBuzzer = millis();
 long timeIntervalLED = 100;
 long timeIntervalServoD = 1100;
-long timeIntervalServoN = 600;
+long timeIntervalServoN = 700;
 long timeIntervalBuzzer = 1000;
 int ledState = 0, servoState = 90, stateDoor = 0, stateB = 0, buzzerState = 0;
 int stateB1 = 0, stateB2 = 0, stateP1 = 0, stateF = 0;
@@ -56,7 +56,7 @@ void loop()
       if (stateB1 >= 1 || stateP1 >= 1)
       {
         door(currentTime, timeIntervalServoD, stateB1);
-        currentTime += 2000;
+        currentTime += 5000;
         stateP1 = 0;
       }
     }
@@ -69,19 +69,19 @@ void loop()
       if (stateB1 >= 1)
       {
         door(currentTime, timeIntervalServoN, stateB1);
-        currentTime += 2000;
+        currentTime += 5000;
       }
       else if (stateP1 >= 1)
       {
         door(currentTime, timeIntervalServoD, stateB1);       
-        currentTime += 2000; 
+        currentTime += 5000; 
       }
     }
   }
   if (stateF >= 1)
   {
     WaterFlood(currentTime, stateF);
-    currentTime += 2000;
+    currentTime += 5000;
   }
   if (payload[3] == "W0" && stateF >= 0)
     {
