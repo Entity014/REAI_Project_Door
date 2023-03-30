@@ -4,9 +4,9 @@
 #include <ArduinoJson.h>
 #include "config.h"
 
-#define slaveAddress 0x08
+#define slaveAddress 0x50
 #define buttonPin1 14
-#define buttonPin2 12
+#define buttonPin2 12 
 #define tricPin 17
 #define echoPin 16
 #define analogPin 34
