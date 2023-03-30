@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <Servo.h>
-#define slaveAddress 0x08
+#define slaveAddress 0x50
 #define ledPin1 13 // ไฟเวลา
 #define ledPin2 12 // ไฟน้ำท่วม
 #define servoPin 11
@@ -13,8 +13,8 @@ unsigned long previousTLED2 = millis();
 unsigned long previousTServo = millis();
 unsigned long previousTBuzzer = millis();
 long timeIntervalLED = 100;
-long timeIntervalServoD = 5000;
-long timeIntervalServoN = 2500;
+long timeIntervalServoD = 1100;
+long timeIntervalServoN = 600;
 long timeIntervalBuzzer = 1000;
 int ledState = 0, servoState = 90, stateDoor = 0, stateB = 0, buzzerState = 0;
 int stateB1 = 0, stateB2 = 0, stateP1 = 0, stateF = 0;
@@ -26,6 +26,7 @@ void receiveEvent(int bytes) {
   {
     dataArray[i] = Wire.read();
   }
+  delay(100);
   for(int i = 0; i < (sizeof(dataArray)/sizeof(dataArray[0]))/2; i++)
   {
     payload[i] = String(char(dataArray[2*i])) + String(char(dataArray[2*i+1]));
@@ -34,7 +35,7 @@ void receiveEvent(int bytes) {
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(ledPin1, OUTPUT);
   pinMode(ledPin2, OUTPUT);
   myservo.attach(servoPin);
@@ -55,6 +56,7 @@ void loop()
       if (stateB1 >= 1 || stateP1 >= 1)
       {
         door(currentTime, timeIntervalServoD, stateB1);
+        currentTime += 2000;
         stateP1 = 0;
       }
     }
@@ -67,16 +69,19 @@ void loop()
       if (stateB1 >= 1)
       {
         door(currentTime, timeIntervalServoN, stateB1);
+        currentTime += 2000;
       }
       else if (stateP1 >= 1)
       {
-        door(currentTime, timeIntervalServoD, stateB1);        
+        door(currentTime, timeIntervalServoD, stateB1);       
+        currentTime += 2000; 
       }
     }
   }
   if (stateF >= 1)
   {
     WaterFlood(currentTime, stateF);
+    currentTime += 2000;
   }
   if (payload[3] == "W0" && stateF >= 0)
     {
@@ -97,7 +102,13 @@ void loop()
     Serial.print(payload[i]);
     Serial.print(" ");
   }
+  Serial.print(stateB1);
+  Serial.print(" ");
+  Serial.print(stateB2);
+  Serial.print(" ");
+  Serial.print(stateP1);
+  Serial.print(" ");
   Serial.print(stateF);
   Serial.println();
-  delay(300);
+  delay(100);
 }
