@@ -17,13 +17,13 @@ void WaterFlood(unsigned long currentTime, int &stateF) {
     if (currentTime - previousTServo > timeIntervalServoD) {
       previousTServo = currentTime;
 
-      if (servoState == 0) {
+      if (servoState == 60) {
         servoState = 90;
         stateDoor = 1;
         stateB = 1;
         stateF = 0;
       } else {
-        servoState = 0;
+        servoState = 60;
       }
       myservo.write(servoState);
     }
