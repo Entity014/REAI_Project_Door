@@ -22,24 +22,24 @@ void door(unsigned long now, long delay, int &stateB1) {
   if (stateDoor == 0) {
     if (now - previousTServo > delay) {
       previousTServo = now;
-      if (servoState == 0) {
+      if (servoState == 60) {
         servoState = 90;
         stateDoor = 1;
         stateB1 = 0;
       } else {
-        servoState = 0;
+        servoState = 60;
       }
       myservo.write(servoState);
     }
   } else if (stateDoor == 1) {
     if (now - previousTServo > delay) {
       previousTServo = now;
-      if (servoState == 180) {
+      if (servoState == 120) {
         servoState = 90;
         stateDoor = 0;
         stateB1 = 0;
       } else {
-        servoState = 180;
+        servoState = 120;
       }
       myservo.write(servoState);
     }
