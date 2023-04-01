@@ -1,7 +1,7 @@
 <h1> REAI Project Door </h1>
 <h2>Model Ai</h2>
 <ul>
-    link : <a href="https://drive.google.com/file/d/1fdTDIiVtQdvnMUq1tuCjKqjwSFWK402i/view?usp=sharing">Ai file</a>
+    link : <a href="https://drive.google.com/drive/folders/1cT7jgKu8IH0sbi_GdbQudXRrQCr-ScGX?usp=sharing">Ai file</a>
 </ul>
 <h2>Feature :</h2>
 <ul>
