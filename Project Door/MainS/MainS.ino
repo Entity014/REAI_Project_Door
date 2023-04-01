@@ -21,6 +21,7 @@ long timeIntervalBuzzer = 1000;
 int ledState = 0, servoState = 90, stateDoor = 0, stateB = 0, buzzerState = 0;
 int stateB1 = 0, stateB2 = 0, stateP1 = 0, stateF = 0;
 int doorWaterFlood = 0, tempStart = 0, tempStop = 0, tempTime = 0;
+int tempEmer = 0;
 bool emergencyMai = false;
 byte dataArray[14];
 String payload[(sizeof(dataArray)/sizeof(dataArray[0]))/2]; // [B1, B2, T0, W0, P0, E0, M0]
@@ -50,6 +51,7 @@ void setup()
 void loop()
 {
   unsigned long currentTime = millis() + 5000;
+  deltaTime = abs(stop - start);
   statePayload(stateB1, stateB2, stateP1, stateF);
 
   if ((myservo.read() == 60 || myservo.read() == 120) && tempStart == 0)
@@ -57,12 +59,14 @@ void loop()
     start = currentTime;
     tempStart = 1;
     tempStop = 0;
+    tempEmer = 1;
   }
   if (myservo.read() == 90 && tempStop == 0)
   {
     stop = currentTime; 
     tempStart = 0;
     tempStop = 1;
+    tempEmer = 0;
   }
 
   if (payload[2] == "T0")
@@ -78,10 +82,13 @@ void loop()
       }
       else if ((stateB1 >= 1 || stateP1 >= 1) && emergencyMai)
       {
-        door(currentTime, deltaTime, stateB1, doorWaterFlood);
+        door(currentTime, tempTime, stateB1, doorWaterFlood);
         currentTime += 5000;
         stateP1 = 0;
-        if (myservo.read() == 90) emergencyMai = false;
+        if (myservo.read() == 90 && tempEmer == 1)
+        {
+          emergencyMai = false;
+        }
       }
     }
   }
@@ -104,21 +111,27 @@ void loop()
         }
         else if (doorWaterFlood == 0 && emergencyMai)
         {
-          door(currentTime, deltaTime, stateB1, doorWaterFlood);
+          door(currentTime, tempTime, stateB1, doorWaterFlood);
           currentTime += 5000; 
-          if (myservo.read() == 90) emergencyMai = false;
+          if (myservo.read() == 90 && tempEmer == 1)
+          {
+            emergencyMai = false;
+          }
         }
       }
       else if (stateP1 >= 1 && !emergencyMai)
       {
         door(currentTime, timeIntervalServoD, stateP1, doorWaterFlood);
-        currentTime += 5000;   
+        currentTime += 5000;
       }
       else if (stateP1 >= 1 && emergencyMai)
       {
-        door(currentTime, deltaTime, stateP1, doorWaterFlood);
+        door(currentTime, tempTime, stateP1, doorWaterFlood);
         currentTime += 5000;
-        if (myservo.read() == 90) emergencyMai = false;
+        if (myservo.read() == 90 && tempEmer == 1)
+        {
+          emergencyMai = false;
+        }
       }
     }
   }
@@ -135,7 +148,7 @@ void loop()
   }
   if (stateB2 >= 1)
   {
-    deltaTime = abs(stop - start);
+    tempTime = deltaTime;
     myservo.write(90);
     digitalWrite(ledPin1, LOW);
     digitalWrite(ledPin2, LOW);
@@ -151,6 +164,8 @@ void loop()
   Serial.print(deltaTime);
   Serial.print(" ");
   Serial.print(emergencyMai);
+  Serial.print(" ");
+  Serial.print(tempEmer);
   Serial.println();
   delay(100);
 }
