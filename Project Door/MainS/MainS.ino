@@ -1,8 +1,8 @@
 #include <Wire.h>
 #include <Servo.h>
 #define slaveAddress 0x50
-#define ledPin1 13 // ไฟเวลา
-#define ledPin2 12 // ไฟน้ำท่วม
+#define ledPin1 12 // ไฟเวลา
+#define ledPin2 13 // ไฟน้ำท่วม
 #define servoPin 11
 #define buzzerPin 10
 
@@ -12,12 +12,16 @@ unsigned long previousTLED1 = millis();
 unsigned long previousTLED2 = millis();
 unsigned long previousTServo = millis();
 unsigned long previousTBuzzer = millis();
+unsigned long start = 0, stop = 0;
+int deltaTimeD = 0, deltaTimeN = 0, deltaTime = 0;
 long timeIntervalLED = 100;
-long timeIntervalServoD = 1100;
-long timeIntervalServoN = 700;
+long timeIntervalServoD = 1200;
+long timeIntervalServoN = 900;
 long timeIntervalBuzzer = 1000;
 int ledState = 0, servoState = 90, stateDoor = 0, stateB = 0, buzzerState = 0;
 int stateB1 = 0, stateB2 = 0, stateP1 = 0, stateF = 0;
+int doorWaterFlood = 0, tempStart = 0, tempStop = 0, tempTime = 0;
+bool emergencyMai = false;
 byte dataArray[14];
 String payload[(sizeof(dataArray)/sizeof(dataArray[0]))/2]; // [B1, B2, T0, W0, P0, E0, M0]
 
@@ -48,16 +52,36 @@ void loop()
   unsigned long currentTime = millis() + 5000;
   statePayload(stateB1, stateB2, stateP1, stateF);
 
+  if ((myservo.read() == 60 || myservo.read() == 120) && tempStart == 0)
+  {
+    start = currentTime;
+    tempStart = 1;
+    tempStop = 0;
+  }
+  if (myservo.read() == 90 && tempStop == 0)
+  {
+    stop = currentTime; 
+    tempStart = 0;
+    tempStop = 1;
+  }
+
   if (payload[2] == "T0")
   {
     digitalWrite(ledPin2, LOW);
     if (stateB2 == 0)
     {
-      if (stateB1 >= 1 || stateP1 >= 1)
+      if ((stateB1 >= 1 || stateP1 >= 1) && !emergencyMai)
       {
-        door(currentTime, timeIntervalServoD, stateB1);
+        door(currentTime, timeIntervalServoD, stateB1, doorWaterFlood);
         currentTime += 5000;
         stateP1 = 0;
+      }
+      else if ((stateB1 >= 1 || stateP1 >= 1) && emergencyMai)
+      {
+        door(currentTime, deltaTime, stateB1, doorWaterFlood);
+        currentTime += 5000;
+        stateP1 = 0;
+        if (myservo.read() == 90) emergencyMai = false;
       }
     }
   }
@@ -68,13 +92,33 @@ void loop()
     {
       if (stateB1 >= 1)
       {
-        door(currentTime, timeIntervalServoN, stateB1);
-        currentTime += 5000;
+        if (doorWaterFlood == 1)
+        {
+          door(currentTime, timeIntervalServoD, stateB1, doorWaterFlood);
+          currentTime += 5000;
+        }
+        else if (doorWaterFlood == 0 && !emergencyMai)
+        {
+          door(currentTime, timeIntervalServoN, stateB1, doorWaterFlood);
+          currentTime += 5000; 
+        }
+        else if (doorWaterFlood == 0 && emergencyMai)
+        {
+          door(currentTime, deltaTime, stateB1, doorWaterFlood);
+          currentTime += 5000; 
+          if (myservo.read() == 90) emergencyMai = false;
+        }
       }
-      else if (stateP1 >= 1)
+      else if (stateP1 >= 1 && !emergencyMai)
       {
-        door(currentTime, timeIntervalServoD, stateB1);       
-        currentTime += 5000; 
+        door(currentTime, timeIntervalServoD, stateP1, doorWaterFlood);
+        currentTime += 5000;   
+      }
+      else if (stateP1 >= 1 && emergencyMai)
+      {
+        door(currentTime, deltaTime, stateP1, doorWaterFlood);
+        currentTime += 5000;
+        if (myservo.read() == 90) emergencyMai = false;
       }
     }
   }
@@ -84,31 +128,29 @@ void loop()
     currentTime += 5000;
   }
   if (payload[3] == "W0" && stateF >= 0)
-    {
-      digitalWrite(ledPin1, LOW);
-      noTone(buzzerPin);
-      stateF = 0;
-    }
+  {
+    digitalWrite(ledPin1, LOW);
+    noTone(buzzerPin);
+    stateF = 0;
+  }
   if (stateB2 >= 1)
   {
+    deltaTime = abs(stop - start);
     myservo.write(90);
     digitalWrite(ledPin1, LOW);
     digitalWrite(ledPin2, LOW);
     noTone(buzzerPin);
     stateB2 = 0;
+    emergencyMai = true;
   }
   for (int i = 0; i < sizeof(payload)/sizeof(payload[0]); i++)
   {
     Serial.print(payload[i]);
     Serial.print(" ");
   }
-  Serial.print(stateB1);
+  Serial.print(deltaTime);
   Serial.print(" ");
-  Serial.print(stateB2);
-  Serial.print(" ");
-  Serial.print(stateP1);
-  Serial.print(" ");
-  Serial.print(stateF);
+  Serial.print(emergencyMai);
   Serial.println();
   delay(100);
 }
