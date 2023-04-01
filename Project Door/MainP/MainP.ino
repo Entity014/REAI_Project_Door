@@ -4,9 +4,9 @@
 #include <ArduinoJson.h>
 #include "config.h"
 
-#define slaveAddress 0x50
+#define slaveAddress 0x08
 #define buttonPin1 14
-#define buttonPin2 12 
+#define buttonPin2 12
 #define tricPin 17
 #define echoPin 16
 #define analogPin 34
@@ -69,20 +69,25 @@ void loop()
     sprintf(temp3, ((String)btnState2).c_str());
     if (buttonState1 >= 1)
     {
-      if (stateDoor == 0)
+      if ((stateDoor == 0) || ((dataArray[6] == 0x57) && (dataArray[7] == 0x31)) ||((dataArray[8] == 0x50) && (dataArray[9] == 0x31)) || ((dataArray[12] == 0x4D) && (dataArray[13] == 0x31)) || ((dataArray[12] == 0x4D) && (dataArray[13] == 0x32)))
       {
-        client.publish("reai/door/b1", "1");
+        client.publish("reai/door/state", "1");
         buttonState1 = 0;
         stateDoor = 1;
         delay(500);
       }
       else if (stateDoor == 1)
       {
-        client.publish("reai/door/b1", "0");
+        client.publish("reai/door/state", "0");
         buttonState1 = 0;
         stateDoor = 0;
         delay(500);
       }
+    }
+    if (btnState2)
+    {
+      client.publish("reai/door/state", "2");
+      delay(500);
     }
     if (temp3 != payload3)
     {
