@@ -1,10 +1,10 @@
 void statePayload(int &stateB1, int &stateB2, int &stateP1, int &stateF)
 {
-  if (payload[0] == "B1" || payload[4] == "P1" || payload[6] == "M2")
+  if (payload[0] == "B1" || payload[6] == "M2")
   {
     stateB1++;
   }
-  if (payload[6] == "M1")
+  if (payload[6] == "M1" || payload[4] == "P1")
   {
     stateP1++;
   }
