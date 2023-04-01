@@ -22,6 +22,7 @@ void WaterFlood(unsigned long currentTime, int &stateF) {
         stateDoor = 1;
         stateB = 1;
         stateF = 0;
+        doorWaterFlood = 1;
       } else {
         servoState = 60;
       }
