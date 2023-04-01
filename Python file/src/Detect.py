@@ -82,7 +82,7 @@ def detectH():
     cap = cv2.VideoCapture(0)
 
     arr = np.zeros((21, 2))
-    passArray = [[1,2,1,2,3], [5,4,3,4,5]] # ? master, slave
+    passArray = [[1,2,3,4,5], [2,8,7,5,2]] # ? master, slave
     dummyCheck = []
     Cpass = ""
     dummyLen = np.zeros((len(passArray), len(passArray[0])))
