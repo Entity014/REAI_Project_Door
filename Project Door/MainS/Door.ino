@@ -18,7 +18,7 @@ void statePayload(int &stateB1, int &stateB2, int &stateP1, int &stateF)
   }
 }
 
-void door(unsigned long now, long delay, int &stateB1) {
+void door(unsigned long now, long delay, int &stateB1, int &doorWaterFlood) {
   if (stateDoor == 0) {
     if (now - previousTServo > delay) {
       previousTServo = now;
@@ -26,6 +26,7 @@ void door(unsigned long now, long delay, int &stateB1) {
         servoState = 90;
         stateDoor = 1;
         stateB1 = 0;
+        doorWaterFlood = 0;
       } else {
         servoState = 60;
       }
@@ -38,6 +39,7 @@ void door(unsigned long now, long delay, int &stateB1) {
         servoState = 90;
         stateDoor = 0;
         stateB1 = 0;
+        doorWaterFlood = 0;
       } else {
         servoState = 120;
       }
