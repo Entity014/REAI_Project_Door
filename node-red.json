@@ -1,0 +1,947 @@
+[
+    {
+        "id": "c99cd2e201816a65",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "446fb0a0f23e2f60",
+        "type": "mqtt-broker",
+        "name": "Home",
+        "broker": "broker.emqx.io",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c638a1a871fc648b",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "37a11b5e7258ec08",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "16a63011017e7c01",
+        "type": "ui_group",
+        "name": "Door",
+        "tab": "c638a1a871fc648b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "70f203f4e6b0442c",
+        "type": "ui_tab",
+        "name": "",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1424030f2e61c9a1",
+        "type": "ui_group",
+        "name": "Sensor",
+        "tab": "c638a1a871fc648b",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a88f9d56c3f58605",
+        "type": "ui_group",
+        "name": "Emergency",
+        "tab": "c638a1a871fc648b",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ac99f2ca20c6c053",
+        "type": "ui_group",
+        "name": "Log",
+        "tab": "c638a1a871fc648b",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "310358e36663ce29",
+        "type": "mqtt out",
+        "z": "c99cd2e201816a65",
+        "name": "Publisher",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "446fb0a0f23e2f60",
+        "x": 580,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "2f1e8e0b4fe442c4",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/sensor",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 940,
+        "y": 300,
+        "wires": [
+            [
+                "48297c69e2df7d66"
+            ]
+        ]
+    },
+    {
+        "id": "48297c69e2df7d66",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "var j = JSON.stringify(msg.payload)\nvar o = JSON.parse(j);\nglobal.set(\"LDR\", o.LDR);\nglobal.set(\"Ultrasonic\", o.Ultrasonic);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0907e23d590e459d",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "global get",
+        "func": "var doorState = global.get(\"DoorState\");\nvar ebutton = global.get(\"E_Button\");\nvar textDoor = \"\"\nvar intDoor = 0;\nif (ebutton != \"EON\")\n{\n    if (doorState == 1)\n    {\n        textDoor = {payload : \"OPEN\"};\n        intDoor = {payload : 1};\n    }\n    else if (doorState == 0)\n    {\n        textDoor = {payload : \"CLOSE\"};\n        intDoor = {payload : 0};\n    }\n    else if (doorState == 2)\n    {\n        textDoor = { payload: \"STOP\" };\n        intDoor = { payload: 0 };\n    }\n}\nelse\n{\n    textDoor = { payload: \"STOP\" };\n    intDoor = { payload: 0 };\n}\nreturn [textDoor, intDoor];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "33899f7c8a628d81"
+            ],
+            [
+                "fa3001577282b51b"
+            ]
+        ]
+    },
+    {
+        "id": "33899f7c8a628d81",
+        "type": "ui_text",
+        "z": "c99cd2e201816a65",
+        "group": "16a63011017e7c01",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Door State :",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 690,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "08b201cb07c185cb",
+        "type": "inject",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "0907e23d590e459d",
+                "57649c7be8d9f313",
+                "ca80052d42d57bd8"
+            ]
+        ]
+    },
+    {
+        "id": "fa3001577282b51b",
+        "type": "ui_gauge",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "group": "16a63011017e7c01",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Door",
+        "label": "units",
+        "format": "{{value | number:1}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "57649c7be8d9f313",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "light & water",
+        "func": "var light = { payload : global.get(\"LDR\") };\nvar water = { payload : global.get(\"Ultrasonic\") };\nvar doorState = global.get(\"DoorState\");\nvar ebutton = global.get(\"E_Button\");\nvar textLight = \"\";\nvar textWater = \"\";\nif (doorState == 2)\n{\n    textWater = { payload: \"STOP\" };\n    textLight = { payload: \"STOP\" };\n    light = { payload: 0 };\n    water = { payload: 0 };\n}\nelse if (ebutton != \"EON\")\n{\n    if (global.get(\"LDR\") <= 300)\n    {\n        textLight = {payload : \"NIGHT\"};\n    }\n    else\n    {\n        textLight = {payload : \"DAY\"};\n    }\n    if (global.get(\"Ultrasonic\") <= 3)\n    {\n        textWater = {payload : \"WATER FLOOD\"};\n    }\n    else\n    {\n        textWater = {payload : \"WATER MAI FLOOD\"};\n    }\n}\nelse\n{\n    textWater = { payload: \"STOP\" };\n    textLight = { payload: \"STOP\" };\n    light = { payload : 0 };\n    water = { payload : 0 };\n}\nreturn [light, water, textLight, textWater];",
+        "outputs": 4,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 320,
+        "wires": [
+            [
+                "523db18da3bcdd73"
+            ],
+            [
+                "e707689173be3907"
+            ],
+            [
+                "5a690822dd3eebdc"
+            ],
+            [
+                "a9258e3597bceed6"
+            ]
+        ]
+    },
+    {
+        "id": "523db18da3bcdd73",
+        "type": "ui_chart",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "group": "1424030f2e61c9a1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Light",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "2000",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 670,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e707689173be3907",
+        "type": "ui_chart",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "group": "1424030f2e61c9a1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Water",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "10",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 670,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a40e9f09fb425c9",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/door/b1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 60,
+        "wires": [
+            [
+                "cd2b3c9b11231b06"
+            ]
+        ]
+    },
+    {
+        "id": "cd2b3c9b11231b06",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "// var door;\n// var counterOn = flow.get(\"counterOn\") || 0\n// if (msg.payload == \"On\") {\n//     door = \"On\"\n//     counterOn++\n// }\n// if (counterOn > 1)\n// {\n//     door = \"Off\"\n//     counterOn = 0;\n// }\n// flow.set(\"counterOn\", counterOn)\nglobal.set(\"Door\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5a690822dd3eebdc",
+        "type": "ui_text",
+        "z": "c99cd2e201816a65",
+        "group": "1424030f2e61c9a1",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Light State :",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 690,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a9258e3597bceed6",
+        "type": "ui_text",
+        "z": "c99cd2e201816a65",
+        "group": "1424030f2e61c9a1",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Water State :",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 690,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "b2b1d1314019796b",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/door/b2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 120,
+        "wires": [
+            [
+                "0dbef1c8e3d32a3d"
+            ]
+        ]
+    },
+    {
+        "id": "0dbef1c8e3d32a3d",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "// var eButton;\n// var counterEON = flow.get(\"counterEON\") || 0\n// if (msg.payload == \"EON\")\n// {\n//     eButton = \"EON\";\n//     counterEON++\n// }\n// if (counterEON > 1)\n// {\n//     eButton = \"EOFF\";\n//     counterEON = 0;\n// }\n// flow.set(\"counterEON\", counterEON)\nglobal.set(\"E_Button\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf733c785a655385",
+        "type": "inject",
+        "z": "c99cd2e201816a65",
+        "name": "Clear",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "25",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "None",
+        "payloadType": "str",
+        "x": 950,
+        "y": 580,
+        "wires": [
+            [
+                "6f2ffbf0c086d063"
+            ]
+        ]
+    },
+    {
+        "id": "c23ef7fc170bd36e",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Open",
+        "func": "var face = global.get(\"Face\");\nvar hand = global.get(\"Hand\");\nvar qr = global.get(\"Qr\");\nvar command;\nif (hand == \"Master\" && face == \"Master\" && qr == \"Master\")\n{\n    command = { payload: \"MasterOpen\", topic: \"reai/door/plus\" };\n    global.set(\"Hand\", \"Nothing\");\n}\nelse if (hand == \"Slave\" && face == \"Slave\" && qr == \"Slave\")\n{\n    command = { payload: \"SlaveOpen\", topic: \"reai/door/plus\" };\n    global.set(\"Hand\", \"Nothing\");\n}\nelse\n{\n    command = { payload: \"Nothing\", topic: \"reai/door/plus\" }\n}\nreturn command;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 920,
+        "wires": [
+            [
+                "310358e36663ce29"
+            ]
+        ]
+    },
+    {
+        "id": "e7df81b8091f2c3f",
+        "type": "inject",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 980,
+        "wires": [
+            [
+                "c23ef7fc170bd36e"
+            ]
+        ]
+    },
+    {
+        "id": "bb195c19debc80fe",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/pc/part1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 440,
+        "wires": [
+            [
+                "6f2ffbf0c086d063"
+            ]
+        ]
+    },
+    {
+        "id": "6f2ffbf0c086d063",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "var qrcode;\nvar hand;\nvar face;\nif (msg.payload.Qr == \"Master\")\n{\n    qrcode = \"Master\";\n}\nif (msg.payload.Qr == \"Slave\")\n{\n    qrcode = \"Slave\";\n}\nif (msg.payload.Hands == \"pass0\") {\n    hand = \"Master\";\n}\nif (msg.payload.Hands == \"pass1\") {\n    hand = \"Slave\";\n}\nif (msg.payload == \"None\")\n{\n    qrcode = \"Nothing\";\n    hand = \"Nothing\";\n    face = \"Nothing\";\n}\nglobal.set(\"Qr\", qrcode);\nglobal.set(\"Hand\", hand);\nglobal.set(\"Face\", face);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1a99c87cf4c342a7",
+        "type": "ui_text",
+        "z": "c99cd2e201816a65",
+        "group": "ac99f2ca20c6c053",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 690,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "ca80052d42d57bd8",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "global get",
+        "func": "var doorState = global.get(\"Door\");\nvar water = global.get(\"Ultrasonic\");\nvar plus = global.get(\"Plus\");\nvar d = new Date();\nvar time = d.toLocaleString(\"th-TH\", { timeZone: \"Asia/Bangkok\" });\nvar text;\nif (doorState == \"1\")\n{\n    text = { payload: time.concat(\" View : On\") };\n}\nelse if (water <= 3)\n{\n    text = { payload: time.concat(\" System : On\") };\n}\nelse if (plus == \"MasterOpen\")\n{\n    text = { payload: time.concat(\" CEO: On\") };\n}\nelse if (plus == \"SlaveOpen\")\n{\n    text = { payload: time.concat(\" Staff : On\") };\n}\nreturn text;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 460,
+        "wires": [
+            [
+                "1a99c87cf4c342a7",
+                "bc66acb583b72e9a"
+            ]
+        ]
+    },
+    {
+        "id": "33de9c8df1f3d38d",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/door/plus",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 180,
+        "wires": [
+            [
+                "9055375aabab0376"
+            ]
+        ]
+    },
+    {
+        "id": "9055375aabab0376",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "global.set(\"Plus\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc66acb583b72e9a",
+        "type": "file",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "filename": "Desktop/test.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 460,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db9f9b857a2aae83",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "var face\nif (msg.payload == \"Pmos\")\n{\n    face = \"Master\";\n}\nelse if (msg.payload == \"Pong\" || msg.payload == \"Phytes\")\n{\n    face = \"Slave\";\n}\nelse\n{\n    face = \"Nothing\"\n}\nglobal.set(\"Face\", face);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83fbbed7d1eda6cc",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/pc/part2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 380,
+        "wires": [
+            [
+                "db9f9b857a2aae83"
+            ]
+        ]
+    },
+    {
+        "id": "71a391ca8873951b",
+        "type": "ui_button",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "group": "16a63011017e7c01",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "On",
+        "payloadType": "str",
+        "topic": "reai/door/b1",
+        "topicType": "str",
+        "x": 370,
+        "y": 700,
+        "wires": [
+            [
+                "310358e36663ce29"
+            ]
+        ]
+    },
+    {
+        "id": "56a6547ade376121",
+        "type": "inject",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "reai/door/b1",
+        "payload": "Off",
+        "payloadType": "str",
+        "x": 170,
+        "y": 740,
+        "wires": [
+            [
+                "310358e36663ce29"
+            ]
+        ]
+    },
+    {
+        "id": "8beb09f22071c4d4",
+        "type": "mqtt in",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "topic": "reai/door/state",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "446fb0a0f23e2f60",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 950,
+        "y": 240,
+        "wires": [
+            [
+                "96c8aa75f3cb17ac"
+            ]
+        ]
+    },
+    {
+        "id": "96c8aa75f3cb17ac",
+        "type": "function",
+        "z": "c99cd2e201816a65",
+        "name": "Global Set",
+        "func": "global.set(\"DoorState\", msg.payload);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62985710db52ce21",
+        "type": "ui_switch",
+        "z": "c99cd2e201816a65",
+        "name": "",
+        "label": "Emergency",
+        "tooltip": "",
+        "group": "16a63011017e7c01",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "reai/door/b2",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "EON",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "EOFF",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 350,
+        "y": 800,
+        "wires": [
+            [
+                "310358e36663ce29"
+            ]
+        ]
+    }
+]
